@@ -9,6 +9,7 @@ services:
       - CLUSTER_NAME=test
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
+      - ./data:/data
     networks:
       - hadoop
     env_file:
