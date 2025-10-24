@@ -1,2 +1,9 @@
 data/
 .idea
+
+*.csv
+*.zip
+
+# Python cache
+__pycache__/
+*.pyc
