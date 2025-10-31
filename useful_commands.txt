@@ -1,0 +1,28 @@
+docker-compose down -v
+- Stops all containers in the compose project.
+- Removes the containers, networks, and volumes (-v) created by Docker Compose.
+- Use this to completely reset the environment (including HDFS data).
+
+docker-compose up -d --build
+- Builds Docker images from your Dockerfiles (--build).
+- Starts containers in detached mode (-d) so they run in the background.
+- Creates the network and volumes if they don’t exist.
+
+docker ps -a
+- Lists all Docker containers, including running and stopped ones.
+- Useful to check container status, IDs, and ports.
+
+docker network ls
+- Lists all Docker networks.
+- Helps verify that your hadoop network exists and is being used by containers.
+
+docker exec -it newyork_taxi_data_analysis-spark-client-1 bash
+- Opens an interactive shell (-it bash) inside the spark-client container.
+- Allows you to run commands inside the container, e.g., Spark commands, Hadoop
+  commands, or Python scripts.
+
+/opt/spark# spark-submit --master spark://spark-master:7077 /scripts/test_pyspark.py
+- Submits a PySpark job to your Spark cluster.
+- --master spark://spark-master:7077 tells Spark where the Master is running.
+- /scripts/test_pyspark.py is the Python script you want to run on the cluster.
+  Output and computation happen across Spark Master and Worker nodes.
