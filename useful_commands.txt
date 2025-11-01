@@ -26,3 +26,9 @@ docker exec -it newyork_taxi_data_analysis-spark-client-1 bash
 - --master spark://spark-master:7077 tells Spark where the Master is running.
 - /scripts/test_pyspark.py is the Python script you want to run on the cluster.
   Output and computation happen across Spark Master and Worker nodes.
+
+/opt/spark#  pyspark --master spark://spark-master:7077
+- Open interactive spark session.
+
+docker exec -i namenode hdfs dfs -ls -h /user/data
+- Check uploaded files directory

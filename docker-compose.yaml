@@ -52,7 +52,6 @@ services:
       - namenode
     volumes:
       - ./scripts:/scripts
-      - ./data:/data
     networks:
       - hadoop
     tty: true
