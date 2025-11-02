@@ -28,6 +28,7 @@ services:
 
   spark-master:
     build: ./docker/spark
+    container_name: spark-master
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
     ports:
       - "8080:8080"
@@ -37,6 +38,7 @@ services:
 
   spark-worker:
     build: ./docker/spark
+    container_name: spark-worker
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
       - spark-master
@@ -47,6 +49,7 @@ services:
 
   spark-client:
     build: ./docker/spark
+    container_name: spark-client
     depends_on:
       - spark-master
       - namenode

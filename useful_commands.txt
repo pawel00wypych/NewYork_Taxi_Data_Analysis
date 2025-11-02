@@ -16,7 +16,7 @@ docker network ls
 - Lists all Docker networks.
 - Helps verify that your hadoop network exists and is being used by containers.
 
-docker exec -it newyork_taxi_data_analysis-spark-client-1 bash
+docker exec -it spark-client bash
 - Opens an interactive shell (-it bash) inside the spark-client container.
 - Allows you to run commands inside the container, e.g., Spark commands, Hadoop
   commands, or Python scripts.
@@ -32,3 +32,11 @@ docker exec -it newyork_taxi_data_analysis-spark-client-1 bash
 
 docker exec -i namenode hdfs dfs -ls -h /user/data
 - Check uploaded files directory
+
+docker exec spark-client spark-submit /scripts/clean_and_transform_data.py
+- run cleaning script with pyspark environment
+- spark-submit is the official launcher for Spark jobs.It automatically:
+- starts a JVM with all Spark and Hadoop JARs on the classpath,
+- configures Py4J to connect Python ↔ Java,
+- passes cluster config (Spark master, YARN, etc.),
+- and runs your script inside a full Spark context.

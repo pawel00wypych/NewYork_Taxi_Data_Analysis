@@ -16,6 +16,6 @@ RUN mkdir -p /hadoop/dfs/name /hadoop/dfs/data
 
 COPY init-hdfs.sh /opt/hadoop/init-hdfs.sh
 RUN chmod +x /opt/hadoop/init-hdfs.sh
-ENTRYPOINT ["/opt/hadoop/init-hdfs.sh"]
+ENTRYPOINT ["bash", "/opt/hadoop/init-hdfs.sh"]
 
 CMD ["bash"]
