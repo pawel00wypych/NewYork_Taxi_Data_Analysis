@@ -13,8 +13,7 @@ def process_file(files_path, file_name):
         print(f"File not found: {csv_path}")
         return
 
-    print(
-        f"\nUploading {file_name} ({os.path.getsize(csv_path) / (1024 * 1024):.1f} MB)"
+    print(f"\nUploading {file_name} ({os.path.getsize(csv_path) / (1024 * 1024):.1f} MB)"
         f" to HDFS using {thread_name}")
 
     hdfs_path = f"{hdfs_dir}/{file_name}"
@@ -36,35 +35,28 @@ def process_file(files_path, file_name):
 if __name__ =='__main__':
     start = time.time()
     hdfs_dir = "/user/data"
-    # csv_files = [
-    #     "taxi%2B_zone_lookup.csv",
-    #     "yellow_tripdata_2019-01.csv",
-    #     "yellow_tripdata_2019-02.csv",
-    #     "yellow_tripdata_2019-03.csv",
-    #     "yellow_tripdata_2019-04.csv",
-    #     "yellow_tripdata_2019-05.csv",
-    #     "yellow_tripdata_2019-06.csv",
-    #     "yellow_tripdata_2019-07.csv",
-    #     "yellow_tripdata_2019-08.csv",
-    #     "yellow_tripdata_2019-09.csv",
-    #     "yellow_tripdata_2019-10.csv",
-    #     "yellow_tripdata_2019-11.csv",
-    #     "yellow_tripdata_2019-12.csv",
-    #     "yellow_tripdata_2020-01.csv",
-    #     "yellow_tripdata_2020-02.csv",
-    #     "yellow_tripdata_2020-03.csv",
-    #     "yellow_tripdata_2020-04.csv",
-    #     "yellow_tripdata_2020-05.csv",
-    #     "yellow_tripdata_2020-06.csv",
-    # ]
-
     csv_files = [
-        "taxi%2B_zone_lookup.csv",
-        "yellow_tripdata_2019-01.csv",
-        "yellow_tripdata_2019-02.csv",
-        "yellow_tripdata_2019-03.csv",
-        "yellow_tripdata_2019-04.csv",
-        "yellow_tripdata_2019-05.csv"]
+       "taxi%2B_zone_lookup.csv",
+       "yellow_tripdata_2019-01.csv",
+       "yellow_tripdata_2019-02.csv",
+       "yellow_tripdata_2019-03.csv",
+       "yellow_tripdata_2019-04.csv",
+       "yellow_tripdata_2019-05.csv",
+       "yellow_tripdata_2019-06.csv",
+       "yellow_tripdata_2019-07.csv",
+       "yellow_tripdata_2019-08.csv",
+       "yellow_tripdata_2019-09.csv",
+       "yellow_tripdata_2019-10.csv",
+       "yellow_tripdata_2019-11.csv",
+       "yellow_tripdata_2019-12.csv",
+       "yellow_tripdata_2020-01.csv",
+       "yellow_tripdata_2020-02.csv",
+       "yellow_tripdata_2020-03.csv",
+       "yellow_tripdata_2020-04.csv",
+       "yellow_tripdata_2020-05.csv",
+       "yellow_tripdata_2020-06.csv",
+    ]
+
 
     # Download latest version
     csv_files_path = kagglehub.dataset_download(
