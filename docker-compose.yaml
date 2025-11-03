@@ -1,10 +1,9 @@
-version: "3"
-
 services:
   namenode:
     build: ./docker/hadoop
     container_name: namenode
-    command: bash -c "hdfs namenode -format && hdfs namenode"
+    environment:
+      - HADOOP_ROLE=namenode
     ports:
       - "9870:9870"
       - "9000:9000"
@@ -16,7 +15,8 @@ services:
   datanode:
     build: ./docker/hadoop
     container_name: datanode
-    command: hdfs datanode
+    environment:
+      - HADOOP_ROLE=datanode
     depends_on:
       - namenode
     ports:
@@ -38,14 +38,13 @@ services:
 
   spark-worker:
     build: ./docker/spark
-    container_name: spark-worker
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
       - spark-master
-    ports:
-      - "8081:8081"
     networks:
       - hadoop
+    deploy:
+      replicas: 2
 
   spark-client:
     build: ./docker/spark
@@ -53,6 +52,7 @@ services:
     depends_on:
       - spark-master
       - namenode
+      - datanode
     volumes:
       - ./scripts:/scripts
     networks:

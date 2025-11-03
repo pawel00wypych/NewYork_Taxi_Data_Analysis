@@ -1,2 +1,4 @@
 # Always use LF for shell scripts
 *.sh text eol=lf
+
+*.conf eol=lf
