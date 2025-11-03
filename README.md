@@ -3,9 +3,29 @@ The project uses NYC yellow cab data (2019–2020) to build a Hadoop-based syste
 
 dataset: https://www.kaggle.com/datasets/microize/newyork-yellow-taxi-trip-data-2020-2019?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExNEd0Z2k0MXY5bkZJNjdRdgEeMELaLJL7WmzuuShke0EPY-UH9-PgaE85NEdSsTpw6LMZOeprrNEdxt4QN5w_aem_RjLuatN2g3u0Tkmuh0KbwA
 
+requirements:
+- conda
+- docker
+
 
 Run `conda env create -f environment.yml` to create conda env for the project.<br>
 Run `conda activate data-pipeline-env` to activate the environment.<br>
-Run `docker-compose up -d` to run docker containers with hadoop in detached mode. <br>
-Run `python extract_load_data_pipeline.py` to load data into hadoop. <br>
-Check file dir on docker: `docker exec -it namenode hdfs dfs -ls /user/data` <br>
+Run `docker-compose build` to download dependencies and build docker volumes.
+<br>
+Run `docker-compose up --scale spark-worker=2 -d` to build and run docker 
+containers with 2 spark workers in detached mode<br>
+Run `python scripts/extract_load_data_pipeline.py` to extract and load data 
+into hadoop.<br>
+Run `docker exec spark-client spark-submit /scripts/clean_and_transform_data.py`
+to clean and transform .csv files into parquet files on hadoop.<br>
+Run `docker exec spark-client spark-submit /scripts/analyze_taxi_data.py`
+to perform data analysis. Results will be available in scripts/analysis/ 
+folder.<br><br>
+
+
+If you encounter issues with the scripts, please check whether the file was 
+saved with a CRLF (Windows) line separator — it should be LF (Linux).
+
+Example of the analysis:
+- Comparison of amount of rides per number of passengers in taxi between 
+  2019 and 2020:

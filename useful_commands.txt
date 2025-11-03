@@ -40,3 +40,7 @@ docker exec spark-client spark-submit /scripts/clean_and_transform_data.py
 - configures Py4J to connect Python ↔ Java,
 - passes cluster config (Spark master, YARN, etc.),
 - and runs your script inside a full Spark context.
+
+
+docker compose up --scale spark-worker=2
+- run docker containers with two spark workers
