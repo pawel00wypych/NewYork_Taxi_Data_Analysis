@@ -29,3 +29,9 @@ saved with a CRLF (Windows) line separator — it should be LF (Linux).
 Example of the analysis:
 - Comparison of amount of rides per number of passengers in taxi between 
   2019 and 2020:
+  <img width="1000" height="600" alt="Image" src="https://github.com/user-attachments/assets/540d92bc-eef6-4661-9452-ccd7384f12a3" />
+- Comparison of tip amount per number of passengers in taxi between 2019 and 2020:
+  <img width="1000" height="600" alt="Image" src="https://github.com/user-attachments/assets/452efa96-1199-4a32-8987-9f57e5885719" />
+- Comparison of average and median trip distance per ride between 2019 and 2020:
+  <img width="800" height="500" alt="Image" src="https://github.com/user-attachments/assets/a664a8a7-b170-4e12-9200-a818d7cd0ef6" />
+
