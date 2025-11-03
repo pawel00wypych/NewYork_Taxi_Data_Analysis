@@ -3,6 +3,7 @@ data/
 
 *.csv
 *.zip
+*.png
 
 # Python cache
 __pycache__/
