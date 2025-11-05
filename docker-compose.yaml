@@ -9,6 +9,7 @@ services:
       - "9000:9000"
     volumes:
       - namenode_data:/hadoop/dfs/name
+      - spark-binaries:/opt/spark
     networks:
       - hadoop
 
@@ -23,46 +24,67 @@ services:
       - "9864:9864"
     volumes:
       - datanode_data:/hadoop/dfs/data
+      - spark-binaries:/opt/spark
     networks:
       - hadoop
 
-  spark-master:
-    build: ./docker/spark
-    container_name: spark-master
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
-    ports:
-      - "8080:8080"
-      - "7077:7077"
-    networks:
-      - hadoop
-
-  spark-worker:
-    build: ./docker/spark
-    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+  resourcemanager:
+    build: ./docker/hadoop
+    container_name: resourcemanager
+    environment:
+      - HADOOP_ROLE=resourcemanager
     depends_on:
-      - spark-master
+      - namenode
+      - datanode
+    volumes:
+      - spark-binaries:/opt/spark
+    ports:
+      - "8088:8088"
+    networks:
+      - hadoop
+
+  nodemanager:
+    build: ./docker/hadoop
+    environment:
+      - HADOOP_ROLE=nodemanager
+    depends_on:
+      - resourcemanager
+    volumes:
+      - ./docker/hadoop/yarn-site.xml:/opt/hadoop/etc/hadoop/yarn-site.xml
+      - hadoop-logs:/opt/hadoop/logs
+      - hadoop-tmp:/opt/hadoop/tmp
+      - spark-binaries:/opt/spark
     networks:
       - hadoop
     deploy:
-      replicas: 2
+      replicas: 3
+
 
   spark-client:
     build: ./docker/spark
     container_name: spark-client
     depends_on:
-      - spark-master
       - namenode
       - datanode
+      - resourcemanager
     volumes:
       - ./scripts:/scripts
+      - spark-binaries:/opt/spark
+    environment:
+      - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
+      - YARN_CONF_DIR=/opt/hadoop/etc/hadoop
     networks:
       - hadoop
     tty: true
     stdin_open: true
+    command: bash
 
 volumes:
   namenode_data:
   datanode_data:
+  spark-binaries:
+  hadoop-logs:
+  hadoop-tmp:
 
 networks:
   hadoop:

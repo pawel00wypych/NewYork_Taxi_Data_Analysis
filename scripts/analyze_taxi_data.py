@@ -61,7 +61,7 @@ def analyze_taxi_data(input_dir):
     plt.ylabel("Trip Count", fontsize=12)
     plt.legend(title="Payment Type", bbox_to_anchor=(1.05, 1),
                loc="upper left")
-    plt.grid(True, axis="y", linestyle="--", alpha=0.6)
+    plt.grid(True, axis="y", alpha=0.6)
     plt.tight_layout()
     plt.savefig("/scripts/analysis/output_payment_type.png")
     plt.close()
@@ -77,7 +77,7 @@ def analyze_taxi_data(input_dir):
 
     pdf2 = tip_total.toPandas()
 
-    # 🧩 Combine year & month for the x-axis
+    # Combine year & month for the x-axis
     pdf2["YearMonth"] = pdf2["year"].astype(str) + "-" + pdf2["month"].astype(
         str).str.zfill(2)
 
@@ -112,7 +112,7 @@ def analyze_taxi_data(input_dir):
     plt.xlabel("Passenger Count", fontsize=12)
     plt.ylabel("Average Total ($)", fontsize=12)
     plt.legend(title="Year")
-    plt.grid(True, axis="y", linestyle="--", alpha=0.6)
+    plt.grid(True, axis="y", alpha=0.6)
     plt.tight_layout()
     plt.savefig("/scripts/analysis/output_total_amount.png")
     plt.close()
@@ -163,7 +163,7 @@ def analyze_taxi_data(input_dir):
     plt.xlabel("Passenger Count", fontsize=12)
     plt.ylabel("Trip Count", fontsize=12)
     plt.legend(title="Year")
-    plt.grid(True, axis="y", linestyle="--", alpha=0.6)
+    plt.grid(True, axis="y", alpha=0.6)
     plt.tight_layout()
     plt.savefig("/scripts/analysis/output_passenger_distribution.png")
     plt.close()

@@ -1,0 +1,52 @@
+<configuration>
+  <property>
+  <name>yarn.resourcemanager.hostname</name>
+  <value>resourcemanager</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.address</name>
+  <value>resourcemanager:8032</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.scheduler.address</name>
+  <value>resourcemanager:8030</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.resource-tracker.address</name>
+  <value>resourcemanager:8031</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.admin.address</name>
+  <value>resourcemanager:8033</value>
+</property>
+
+
+    <property>
+  <name>yarn.nodemanager.resource.memory-mb</name>
+  <value>4096</value>
+  <description>Total memory (in MB) available for containers on this NodeManager.</description>
+</property>
+<property>
+  <name>yarn.scheduler.maximum-allocation-mb</name>
+  <value>4096</value>
+  <description>Maximum memory per container.</description>
+</property>
+<property>
+  <name>yarn.scheduler.minimum-allocation-mb</name>
+  <value>256</value>
+  <description>Minimum memory per container.</description>
+</property>
+<property>
+  <name>yarn.nodemanager.resource.cpu-vcores</name>
+  <value>4</value>
+  <description>Total number of virtual CPU cores available for containers.</description>
+</property>
+<property>
+  <name>yarn.nodemanager.local-dirs</name>
+  <value>/opt/hadoop/tmp/nm-local-dir</value>
+</property>
+<property>
+  <name>yarn.nodemanager.log-dirs</name>
+  <value>/opt/hadoop/logs/userlogs</value>
+</property>
+</configuration>
