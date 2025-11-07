@@ -12,8 +12,8 @@ Run `conda env create -f environment.yml` to create conda env for the project.<b
 Run `conda activate data-pipeline-env` to activate the environment.<br>
 Run `docker-compose build` to download dependencies and build docker volumes.
 <br>
-Run `docker-compose up --scale spark-worker=2 -d` to build and run docker 
-containers with 2 spark workers in detached mode<br>
+Run `docker-compose up -d` to build and run docker 
+containers in detached mode<br>
 Run `python scripts/extract_load_data_pipeline.py` to extract and load data 
 into hadoop.<br>
 Run `docker exec spark-client spark-submit /scripts/clean_and_transform_data.py`

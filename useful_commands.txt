@@ -44,3 +44,9 @@ docker exec spark-client spark-submit /scripts/clean_and_transform_data.py
 
 docker compose up --scale spark-worker=2
 - run docker containers with two spark workers
+
+
+
+docker exec -it spark-client bash
+root@f89283a68141:/opt/spark# cat /opt/spark/conf/spark-defaults.conf
+- check current .conf file
